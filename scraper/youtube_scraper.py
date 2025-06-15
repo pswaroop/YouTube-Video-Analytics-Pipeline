@@ -55,7 +55,7 @@ def get_trending_videos():
 
 def save_to_json(data, output_path):
     with open(output_path, 'w', encoding='utf-8') as f:
-        json.dump(data, f, indent=4)
+        json.dump(data, f, indent=4, ensure_ascii=False)
     print(f"Saved scraped data to: {output_path}")
 
 
