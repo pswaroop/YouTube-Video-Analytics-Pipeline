@@ -17,3 +17,12 @@ Build a daily pipeline that ingests trending YouTube videos (from public dataset
 - Task 4: Store in analytics-ready format (Delta/Parquet/Postgres)
 
 - (Optional) Notify or trigger a dashboard update
+
+# Commands to Initialize DAG in Airflow (>=2.90)
+
+For creating metadatabase
+> airflow db migrate
+
+For running airflow
+> airflow standalone
+
