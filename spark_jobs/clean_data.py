@@ -1,8 +1,11 @@
-from pyspark.sql import SparkSession
-from pyspark.sql.functions import col, explode, lit, to_timestamp
-from pyspark.sql.types import StructType,StringType,ArrayType,StructField
 import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import col, explode, to_timestamp
+from pyspark.sql.types import StructType,StringType,ArrayType,StructField
 from datetime import datetime
+from utils.duration_utils import duration_to_sec_udf
 
 spark = SparkSession.builder.appName('UtubeTrendingDataCleaner')\
 .getOrCreate()
@@ -36,6 +39,7 @@ df_cleaned = dataframe \
 .withColumn("comment_count",col("comment_count").cast("long")) \
 .withColumn("trending_date",to_timestamp("trending_date")) \
 .withColumn("tag",explode("tags")) \
+.withColumn("duration_secs",duration_to_sec_udf("duration")) \
 .filter(col("view_count")>0)\
 .na.drop(subset=["video_id","title","channel_title"])
 
