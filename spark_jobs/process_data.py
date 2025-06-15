@@ -11,7 +11,7 @@ spark = SparkSession.builder.appName('UtubeTrendingDataCleaner')\
 .getOrCreate()
 
 INPUT_PATH = "data/raw/"
-OUTPUT_PATH = "data/cleaned/"
+OUTPUT_PATH = "data/processed/"
 
 TODAY = datetime.utcnow().strftime("%y-%m-%d")
 
