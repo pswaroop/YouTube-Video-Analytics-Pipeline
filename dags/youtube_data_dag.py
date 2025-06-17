@@ -11,8 +11,8 @@ default_args = {
 with DAG(
     dag_id='youtube_trending_data_pipeline',
     default_args=default_args,
-    start_date=(2025,6,15),
-    schedule_interval='@once', #'@daily'
+    start_date=datetime(2025,6,15),
+    schedule='@once', #'@daily'
     catchup=False,
     tags=['youtube','etl'],
     doc_md="""
