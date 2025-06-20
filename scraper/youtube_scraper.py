@@ -81,4 +81,6 @@ def run_scraper(output_format='json'):
 
 
 if __name__ == "__main__":
+    print("Started getting data from YouTube API")
     run_scraper(output_format='json')
+    print("Scraped data successfully!")
