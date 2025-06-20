@@ -23,12 +23,12 @@ with DAG(
 ) as dag:
     run_scraper = BashOperator(
         task_id='scrape_youtube_data',
-        bash_command='python3 scraper/youtube_scraper.py'
+        bash_command='cd /absolute/path/to/project && python3 scraper/youtube_scraper.py'
     )
 
     run_processor = BashOperator(
         task_id='process_raw_data',
-        bash_command='python3 spark_jobs/process_data.py'
+        bash_command='cd /absolute/path/to/project && python3 spark_jobs/process_data.py'
     )
 
     run_scraper >> run_processor
