@@ -7,6 +7,7 @@ from pyspark.sql.types import StructType,StringType,ArrayType,StructField
 from datetime import datetime
 from utils.duration_utils import duration_to_sec_udf
 
+print("Started processing data...")
 spark = SparkSession.builder.appName('UtubeTrendingDataCleaner')\
 .getOrCreate()
 
@@ -46,4 +47,5 @@ df_cleaned = dataframe \
 
 df_cleaned.write.mode("overwrite").partitionBy("trending_date").parquet(OUTPUT_PATH)
 
-print(f"Cleaned Data of {TODAY} written to: {OUTPUT_PATH} successfully")
+spark.stop()
+print(f"Processed Data of {TODAY} written to: {OUTPUT_PATH} successfully")
